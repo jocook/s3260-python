@@ -1,0 +1,6 @@
+{
+    "ip": "ucs-ctl1.dcloud.cisco.com",
+    "pw": "C1sco12345",
+    "secure": "True",
+    "user": "admin"
+}
