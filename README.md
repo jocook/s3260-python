@@ -28,12 +28,12 @@ s3260-ceph-python depends on the UCS Central Python SDK.  If the UCS Central Pyt
 
 ## Usage
 
-Python scripts included in s3260-ceph-python general have the following usage:
+* Python scripts included in s3260-ceph-python general have the following usage:
     ```
     python ucsc_<action> <JSON credentials file> <csv file with params>
     ```
 
-The <JSON credentials file> should be customized for your UCS Central enviornment.  An example file, ucsc_dcloud.json, is included with the following content that specifies IP address, username, and password:
+* The <JSON credentials file> should be customized for your UCS Central enviornment.  An example file, ucsc_dcloud.json, is included with the following content that specifies IP address, username, and password:
     ```
     {
     "ip": "ucs-ctl1.dcloud.cisco.com",
@@ -44,14 +44,14 @@ The <JSON credentials file> should be customized for your UCS Central enviornmen
 
 The <csv file with params> provides parameters for Service Profile Template, org, name, and other pools/policies/profiles used by the Template.  The csv file can also include Service Profile names and number of instances used in creating Service Profiles from the template.  Use of a csv file for parameters is provides only as an example and is not required by any parts of the Python SDK.  See global_spt_test.csv for example params.
 
-With the <JSON credentials file> and csv file customized for your environment, here are specific command lines to create and delete Global Service Profile Templates:
+* With the <JSON credentials file> and csv file customized for your environment, here are specific command lines to create and delete Global Service Profile Templates:
     ```
     python ucsc_create_global_spt.py ucsc_dcloud_demo.json global_spt_test.csv 
     
     python ucsc_delete_global_spt.py ucsc_dcloud_demo.json global_spt_test.csv 
     ```
 
-Here are example command lines to associate and disassociate Global Service Profile Templates:
+* Here are example command lines to associate and disassociate Global Service Profile Templates:
     ```
     python ucsc_associate_sp.py ucsc_dcloud_demo.json global_spt_test.csv 
     python ucsc_disassociate_sp.py ucsc_dcloud_demo.json global_spt_test.csv 
