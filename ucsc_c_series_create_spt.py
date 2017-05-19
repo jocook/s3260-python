@@ -61,24 +61,21 @@ if __name__ == "__main__":
 			  power_policy_name="Ceph-Power", 
 	                  uuid="derived")
             
-	    mo_1 = VnicEther(parent_mo_or_dn=mo,
-                             name="Default",
-                             switch_id="A-B",
-                             mtu="1500",
-                             cdn_source="vnic-name",
-                             ident_pool_name="mac-pool",
-                             qos_policy_name="Ceph_Qos_Policy",
-                             admin_host_port="ANY",
-                             admin_vcon="1",
-                             order="1",
-                             addr="derived")
-            mo_2 = VnicEtherIf(parent_mo_or_dn=mo_1, default_net="yes", name="G-default")
-            mo_1 = LsVConAssign(parent_mo_or_dn=mo, admin_vcon="1", vnic_name="Default",
-                                order="1", transport="ethernet", admin_host_port="ANY")
+	    mo_1 = VnicEther(parent_mo_or_dn=mo, 
+			     name="Default", 
+			     switch_id="A-B", 
+			     mtu="1500", 
+			     cdn_source="vnic-name", 
+			     ident_pool_name="mac-pool", 
+			     qos_policy_name="Ceph_Qos_Policy", 
+	                     admin_host_port="ANY", 
+			     admin_vcon="1", 
+			     order="1", 
+			     addr="derived")
+	    mo_2 = VnicEtherIf(parent_mo_or_dn=mo_1, default_net="yes", name="G-default")
+	    mo_1 = LsVConAssign(parent_mo_or_dn=mo, admin_vcon="1", vnic_name="Default", 
+	                        order="1", transport="ethernet", admin_host_port="ANY")
             
-	    if row['Storage_Profile']:
-	        mo_1 = LstorageProfileBinding(parent_mo_or_dn=mo, storage_profile_name=row['Storage_Profile'])
-
 	    mo_1 = LsRequirement(parent_mo_or_dn=mo, restrict_migration="no", name=row['Server_Pool'])
 
             mo_1 = LsPower(parent_mo_or_dn=mo, state="up")

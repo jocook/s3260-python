@@ -1,3 +1,4 @@
 org,Template,SP_Name,instances,UUID,Server_Pool,Boot_Policy,Maint_Policy,Mgmt_IP_Pool,Storage_Profile
-org-root,UCS-3260-OSD-Test,UCS-3260-Test,2,UCS-Ceph-UUID-Pool,S3260-Node1,PXE-Boot,Server-Maint,ext-mgmt,S3260-Node1
-org-root,UCS-3260-OSD-Test2,UCS-3260-Test2,2,UCS-Ceph-UUID-Pool,S3260-Node2,PXE-Boot,Server-Maint,ext-mgmt,S3260-Node2
+org-root,G-Mon-C220M4,G-Mon,1,uuid-pool,G-C220,global-default,Ceph-Maintenance,ext-mgmt,
+org-root,G-RGW-C220M4,G-RGW,1,uuid-pool,G-C220,global-default,Ceph-Maintenance,ext-mgmt,
+org-root,G-OSD-S3260,G-OSD,2,uuid-pool,S3260-Node2,Ceph-Boot,Ceph-Maintenance,ext-mgmt,G-S3260-Node2

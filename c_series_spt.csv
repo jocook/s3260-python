@@ -1,0 +1,2 @@
+org,Template,SP_Name,instances,UUID,Server_Pool,Boot_Policy,Maint_Policy,Mgmt_IP_Pool
+org-root,G-Mon-C220,,1,uuid-pool,G-C220M4S,global-default,Ceph-Maintenance,ext-mgmt
