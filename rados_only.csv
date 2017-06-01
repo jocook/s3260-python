@@ -1,0 +1,2 @@
+org,Template,SP_Name,instances,UUID,Server_Pool,Boot_Policy,Maint_Policy,Mgmt_IP_Pool,Storage_Profile
+org-root,G-RGW-C220M4,G-RGW,1,G-UUID-Pool,C220-server-pool,ceph-c220-boot,Ceph-Maintenance,qcja-lab-cimc,
