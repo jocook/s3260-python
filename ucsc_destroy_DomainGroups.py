@@ -15,26 +15,16 @@ if __name__ == "__main__":
         handle = UcscHandle(ip=settings_file['ip'], username=settings_file['user'], password=settings_file['pw'])
         handle.login()
         
-        print "Creating Domain Group Heirarchy:" #% (template)
+        print "Deleting DomainGroups:" #% (template)
 
-        from ucscsdk.mometa.org.OrgDomainGroup import OrgDomainGroup
-
-        mo = OrgDomainGroup(parent_mo_or_dn="domaingroup-root",
-                        descr="Domain Group for North America", 
-                        name="DG-NA"
-                        )
-
-        handle.add_mo(mo)
+	mo = handle.query_dn("domaingroup-root/domaingroup-DG-NA/domaingroup-DG-US")
+        handle.remove_mo(mo)
         handle.commit()
 
-	mo = OrgDomainGroup(parent_mo_or_dn="domaingroup-root/domaingroup-DG-NA",
-                        descr="Domain Group for United States",
-                        name="DG-US"
-                        )
 
-        handle.add_mo(mo)
+        mo = handle.query_dn("domaingroup-root/domaingroup-DG-NA")
+        handle.remove_mo(mo)
         handle.commit()
-
 
 
         handle.logout()
