@@ -17,6 +17,10 @@ if __name__ == "__main__":
         
         print "Deleting Organizations:" #% (template)
 
+        mo = handle.query_dn("org-root/org-NA/org-US/org-QCJA-Lab")
+        handle.remove_mo(mo)
+        handle.commit()
+
 	mo = handle.query_dn("org-root/org-NA/org-US")
         handle.remove_mo(mo)
         handle.commit()

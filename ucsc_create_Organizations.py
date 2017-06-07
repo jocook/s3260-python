@@ -35,6 +35,14 @@ if __name__ == "__main__":
         handle.add_mo(mo)
         handle.commit()
 
+        mo = OrgOrg(parent_mo_or_dn="org-root/org-NA/org-US",
+                        descr="Organization for QCJA-Lab",
+                        name="QCJA-Lab"
+                        )
+
+        handle.add_mo(mo)
+        handle.commit()
+
 
 
         handle.logout()
