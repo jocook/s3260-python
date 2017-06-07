@@ -35,7 +35,13 @@ if __name__ == "__main__":
         handle.add_mo(mo)
         handle.commit()
 
+        mo = OrgDomainGroup(parent_mo_or_dn="domaingroup-root/domaingroup-DG-NA/domaingroup-DG-US",
+                            descr="Domain Group for United States",
+                            name="DG-QCJA-Lab"
+                            )
 
+        handle.add_mo(mo)
+        handle.commit()
 
         handle.logout()
 

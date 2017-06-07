@@ -17,6 +17,10 @@ if __name__ == "__main__":
         
         print "Deleting DomainGroups:" #% (template)
 
+        mo = handle.query_dn("domaingroup-root/domaingroup-DG-NA/domaingroup-DG-US/domaingroup-DG-QCJA-Lab")
+        handle.remove_mo(mo)
+        handle.commit()
+
 	mo = handle.query_dn("domaingroup-root/domaingroup-DG-NA/domaingroup-DG-US")
         handle.remove_mo(mo)
         handle.commit()
