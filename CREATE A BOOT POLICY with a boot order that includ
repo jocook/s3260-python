@@ -1,0 +1,71 @@
+CREATE A BOOT POLICY with a boot order that includes vMedia
+
+##### Start-Of-PythonScript #####
+
+from ucsmsdk.mometa.lsboot.LsbootPolicy import LsbootPolicy
+from ucsmsdk.mometa.lsboot.LsbootVirtualMedia import LsbootVirtualMedia
+from ucsmsdk.mometa.lsboot.LsbootStorage import LsbootStorage
+from ucsmsdk.mometa.lsboot.LsbootLocalStorage import LsbootLocalStorage
+from ucsmsdk.mometa.lsboot.LsbootLocalHddImage import LsbootLocalHddImage
+
+mo = LsbootPolicy(parent_mo_or_dn="org-root", name="ceph-c220-boot", descr="C220 Server Boot Policy for CEPH use case", reboot_on_update="no", policy_owner="local", enforce_vnic_name="yes", boot_mode="legacy")
+mo_1 = LsbootVirtualMedia(parent_mo_or_dn=mo, access="read-only-local", lun_id="0", mapping_name="", order="1")
+mo_2 = LsbootVirtualMedia(parent_mo_or_dn=mo, access="read-only-remote-cimc", lun_id="0", mapping_name="", order="3")
+mo_3 = LsbootStorage(parent_mo_or_dn=mo, order="2")
+mo_3_1 = LsbootLocalStorage(parent_mo_or_dn=mo_3, )
+mo_3_1_1 = LsbootLocalHddImage(parent_mo_or_dn=mo_3_1, order="2")
+handle.add_mo(mo)
+
+handle.commit()
+##### End-Of-PythonScript #####
+
+
+
+Promote the vMedia Policy to the top of the list
+
+##### Start-Of-PythonScript #####
+
+from ucsmsdk.mometa.lsboot.LsbootVirtualMedia import LsbootVirtualMedia
+from ucsmsdk.mometa.lsboot.LsbootStorage import LsbootStorage
+from ucsmsdk.mometa.lsboot.LsbootLocalStorage import LsbootLocalStorage
+from ucsmsdk.mometa.lsboot.LsbootLocalHddImage import LsbootLocalHddImage
+
+obj = handle.query_dn("org-root/boot-policy-ceph-c220-boot")
+mo = LsbootVirtualMedia(parent_mo_or_dn=obj, access="read-only-local", lun_id="0", mapping_name="", order="2")
+handle.add_mo(mo, True)
+
+mo = LsbootVirtualMedia(parent_mo_or_dn=obj, access="read-only-remote-cimc", lun_id="0", mapping_name="", order="1")
+handle.add_mo(mo, True)
+
+mo = LsbootStorage(parent_mo_or_dn=obj, order="3")
+mo_1 = LsbootLocalStorage(parent_mo_or_dn=mo, )
+mo_1_1 = LsbootLocalHddImage(parent_mo_or_dn=mo_1, order="3")
+handle.add_mo(mo, True)
+
+handle.commit()
+##### End-Of-PythonScript #####
+
+
+Demote the vMedia Policy to the bottom of the list
+
+##### Start-Of-PythonScript #####
+
+from ucsmsdk.mometa.lsboot.LsbootVirtualMedia import LsbootVirtualMedia
+from ucsmsdk.mometa.lsboot.LsbootStorage import LsbootStorage
+from ucsmsdk.mometa.lsboot.LsbootLocalStorage import LsbootLocalStorage
+from ucsmsdk.mometa.lsboot.LsbootLocalHddImage import LsbootLocalHddImage
+
+obj = handle.query_dn("org-root/boot-policy-ceph-c220-boot")
+mo = LsbootVirtualMedia(parent_mo_or_dn=obj, access="read-only-local", lun_id="0", mapping_name="", order="1")
+handle.add_mo(mo, True)
+
+mo = LsbootVirtualMedia(parent_mo_or_dn=obj, access="read-only-remote-cimc", lun_id="0", mapping_name="", order="3")
+handle.add_mo(mo, True)
+
+mo = LsbootStorage(parent_mo_or_dn=obj, order="2")
+mo_1 = LsbootLocalStorage(parent_mo_or_dn=mo, )
+mo_1_1 = LsbootLocalHddImage(parent_mo_or_dn=mo_1, order="2")
+handle.add_mo(mo, True)
+
+handle.commit()
+##### End-Of-PythonScript #####
